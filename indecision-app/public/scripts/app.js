@@ -1,11 +1,37 @@
 "use strict";
 
-var getFirstName = function getFirstName(fullName) {
-    return fullName.split(" ")[0];
+// arguments object - no longer bound with arrow functions
+var add = function add(a, b) {
+    //console.log(arguments) // arguments is not defined
+    return a + b;
 };
-console.log(getFirstName("Daniel Persson"));
+console.log(add(55, 1, 1001));
 
-var getLastName = function getLastName(fullName) {
-    return fullName.split(" ")[1];
+// this keyword - no longer bound
+
+var user = {
+    name: "Daniel",
+    cities: ["Kristinehamn", "Göteborg", "Sunne"],
+    printPlacesLived: function printPlacesLived() {
+        var _this = this;
+
+        return this.cities.map(function (city) {
+            return _this.name + " has lived in " + city;
+        });
+    }
 };
-console.log(getLastName("Daniel Persson"));
+console.log(user.printPlacesLived());
+
+var multiplier = {
+    numbers: [10, 20, 30],
+    multiplyBy: 4,
+    multiply: function multiply() {
+        var _this2 = this;
+
+        return this.numbers.map(function (number) {
+            return _this2.multiplyBy * number;
+        });
+    }
+};
+
+console.log(multiplier.multiply());
