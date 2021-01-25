@@ -20,12 +20,12 @@ var onFormSubmit = function onFormSubmit(e) {
     }
 };
 
-var appRoot = document.getElementById("app");
-
 var onRemoveAll = function onRemoveAll() {
     app.options = [];
     render();
 };
+
+var appRoot = document.getElementById("app");
 
 var render = function render() {
     // JSX - JavaScript XML
@@ -60,16 +60,13 @@ var render = function render() {
         React.createElement(
             "ol",
             null,
-            React.createElement(
-                "li",
-                null,
-                "Item one"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item two"
-            )
+            app.options.map(function (option) {
+                return React.createElement(
+                    "li",
+                    { key: option },
+                    option
+                );
+            })
         ),
         React.createElement(
             "form",
